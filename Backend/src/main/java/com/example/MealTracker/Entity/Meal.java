@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import jakarta.persistence.*;
 
 
 @Entity
@@ -15,6 +16,10 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class Meal {
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private Users user;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
