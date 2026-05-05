@@ -18,6 +18,11 @@ public class UserProfile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // --- EXACT CHANGE TO ADD ---
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private Users user;
+
     private String name;
     private int targetEnergy;
     private int targetProtein;

@@ -1,31 +1,33 @@
 // src/components/TargetManager.jsx
 import { useState } from 'react';
+import axios from 'axios';
 
 export default function TargetManager({ currentProfile, onProfileUpdate, onClose }) {
-  // Pre-fill with existing targets if they exist
   const [energy, setEnergy] = useState(currentProfile?.targetEnergy || '');
   const [protein, setProtein] = useState(currentProfile?.targetProtein || '');
 
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
-    
-    const newProfile = {
-      targetEnergy: parseInt(energy),
-      targetProtein: parseInt(protein)
-    };
 
-    // Send the new targets to your Spring Boot Backend
-    fetch('http://localhost:8080/profiles', {
-      method: 'POST', // Assuming your backend creates a new historical record!
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newProfile)
-    })
-    .then(res => res.json())
-    .then(data => {
-      onProfileUpdate(data); // Tell the main app to update the dashboard
-      onClose(); // Hide the form
-    })
-    .catch(err => console.error("Error updating targets:", err));
+    try {
+      // 1. Grab the VIP stamp
+      const token = localStorage.getItem("jwtToken");
+
+      const newProfile = {
+        targetEnergy: parseInt(energy),
+        targetProtein: parseInt(protein)
+      };
+
+      // 2. Send the request securely using axios
+      const response = await axios.post('http://localhost:8080/profiles', newProfile, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      onProfileUpdate(response.data);
+      onClose();
+    } catch (error) {
+      console.error("Error updating targets:", error);
+    }
   };
 
   return (

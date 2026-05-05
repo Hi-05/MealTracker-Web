@@ -15,7 +15,7 @@ import java.util.function.Function;
 public class JWTService {
 
     // 1. The static key is now properly declared inside the class
-    private String secretKey = "VGhpcy1pcy1hLXZlcnktc2VjdXJlLWtleS1mb3ItbXktbWVhbC10cmFja2VyLWFwcGxpY2F0aW9u";
+    private String secretKey = "FAKE_SECRET_DO_NOT_USE";
 
     // The old constructor with the KeyGenerator has been completely removed.
     // Spring will automatically use the default no-args constructor.
