@@ -63,7 +63,7 @@ public class MealService {
         Users currentUser = getAuthenticatedUser();
 
         // SECURE: Only fetch meals linked to this user's ID
-        List<Meal> meals = mealRepository.findByUser_Id((long) currentUser.getId());
+        List<Meal> meals = mealRepository.findByUser_Id(currentUser.getId());
 
         return meals.stream()
                 .map(mealMapper::toDto)
@@ -77,7 +77,7 @@ public class MealService {
         Users currentUser = getAuthenticatedUser();
 
         // SECURE: Only fetch meals for this user ON this date
-        List<Meal> meals = mealRepository.findByUser_IdAndDate((long) currentUser.getId(), date);
+        List<Meal> meals = mealRepository.findByUser_IdAndDate( currentUser.getId(), date);
 
         return meals.stream()
                 .map(mealMapper::toDto)
@@ -92,10 +92,10 @@ public class MealService {
 
         // 1. Find the meal
         Meal existingMeal = mealRepository.findById(mealId)
-                .orElseThrow(() -> new RuntimeException("Meal not found with id: " + mealId));
+                .orElseThrow(() -> new IllegalArgumentException("Meal not found with id: " + mealId));
 
         // 2. SECURE: Check if the current user owns this meal before updating
-        if (existingMeal.getUser().getId() != currentUser.getId()) {
+        if (!existingMeal.getUser().getId().equals(currentUser.getId())) {
             throw new RuntimeException("Unauthorized: You do not have permission to modify this meal");
         }
 
@@ -116,10 +116,10 @@ public class MealService {
 
         // 1. Find the meal
         Meal existingMeal = mealRepository.findById(mealId)
-                .orElseThrow(() -> new RuntimeException("Meal not found with id: " + mealId));
+                .orElseThrow(() -> new IllegalArgumentException("Meal not found with id: " + mealId));
 
         // 2. SECURE: Check if the current user owns this meal before deleting
-        if (existingMeal.getUser().getId() != currentUser.getId()) {
+        if (!existingMeal.getUser().getId().equals(currentUser.getId())) {
             throw new RuntimeException("Unauthorized: You do not have permission to modify this meal");
         }
 
@@ -134,7 +134,7 @@ public class MealService {
         Users currentUser = getAuthenticatedUser();
 
         // SECURE: Only fetch meals for this user
-        List<Meal> meals = mealRepository.findByUser_Id((long) currentUser.getId());
+        List<Meal> meals = mealRepository.findByUser_Id( currentUser.getId());
 
         return meals.stream()
                 .map(mealMapper::toEnergy)
@@ -148,7 +148,7 @@ public class MealService {
         Users currentUser = getAuthenticatedUser();
 
         // SECURE: Only fetch meals for this user
-        List<Meal> meals = mealRepository.findByUser_Id((long) currentUser.getId());
+        List<Meal> meals = mealRepository.findByUser_Id(currentUser.getId());
 
         return meals.stream()
                 .map(mealMapper::toProtein)
