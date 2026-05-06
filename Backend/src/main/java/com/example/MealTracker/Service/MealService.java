@@ -28,7 +28,7 @@ public class MealService {
     // SECURITY HELPER: Get the logged-in user
     // ==========================================
     private Users getAuthenticatedUser() {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        String username = Objects.requireNonNull(SecurityContextHolder.getContext().getAuthentication()).getName();
         Users user = usersRepo.findByUsername(username);
         if (user == null) {
             throw new RuntimeException("Authenticated user not found in database");
