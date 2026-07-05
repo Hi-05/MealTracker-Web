@@ -8,6 +8,7 @@ import com.example.MealTracker.Entity.Users;
 import com.example.MealTracker.Mapper.MealMapper;
 import com.example.MealTracker.Repository.MealRepository;
 import com.example.MealTracker.Repository.UsersRepo;
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;

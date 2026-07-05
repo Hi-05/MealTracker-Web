@@ -15,14 +15,16 @@ public interface MealMapper {
 
     MealDto toDto(Meal meal);
 
+    @Mapping(target = "user", ignore = true)
     Meal toEntity(MealDto mealDto);
 
-    EnergyDto toEnergy(Meal meal) ;
+    EnergyDto toEnergy(Meal meal);
 
-    ProteinDto toProtein(Meal meal) ;
+    ProteinDto toProtein(Meal meal);
 
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(target = "id", ignore = true) // SDE Security Rule: Never overwrite the DB ID!
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "user", ignore = true)
     void updateMealFromDto(MealDto mealDto, @MappingTarget Meal meal);
 }
