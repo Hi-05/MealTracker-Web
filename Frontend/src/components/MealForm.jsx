@@ -10,7 +10,7 @@ export default function MealForm({ onMealAdded }) {
     e.preventDefault();
     try {
       const token = localStorage.getItem("jwtToken");
-      const response = await axios.post("http://localhost:8080/meals", {
+      const response = await axios.post("https://mealtracker-web-production.up.railway.app/meals", {
           name,
           protein: parseInt(protein),
           energy: parseInt(energy)

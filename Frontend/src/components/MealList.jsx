@@ -5,7 +5,7 @@ export default function MealList({ meals, onMealDeleted }) {
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem("jwtToken");
-      await axios.delete(`http://localhost:8080/meals/${id}`, {
+      await axios.delete(`https://mealtracker-web-production.up.railway.app/meals/${id}`, {
         headers: { Authorization: `Bearer ${token}` } // Security stamp!
       });
       onMealDeleted(id); // Tell the Dashboard to remove it from the screen

@@ -10,7 +10,7 @@ export default function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8080/register", { username, password });
+      await axios.post("https://mealtracker-web-production.up.railway.app/register", { username, password });
       alert("Registration Successful! Please login.");
       navigate("/login");
     } catch (error) {

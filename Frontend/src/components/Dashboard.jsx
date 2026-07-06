@@ -29,7 +29,7 @@ export default function Dashboard() {
     const config = { headers: { Authorization: `Bearer ${token}` } };
 
     // 1. Fetch the user's meals
-    axios.get("http://localhost:8080/meals", config)
+    axios.get("https://mealtracker-web-production.up.railway.app/meals", config)
       .then(response => setMeals(response.data))
       .catch(error => {
         console.error("Fetch error:", error);
@@ -37,7 +37,7 @@ export default function Dashboard() {
       });
 
     // 2. Fetch the user's target goals
-    axios.get("http://localhost:8080/profiles/current", config)
+    axios.get("https://mealtracker-web-production.up.railway.app/profiles/current", config)
       .then(response => setProfile(response.data))
       .catch(error => console.log("No profile found yet. User needs to set targets."));
   }, [navigate]);

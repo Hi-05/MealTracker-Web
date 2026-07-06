@@ -19,7 +19,7 @@ export default function TargetManager({ currentProfile, onProfileUpdate, onClose
       };
 
       // 2. Send the request securely using axios
-      const response = await axios.post('http://localhost:8080/profiles', newProfile, {
+      const response = await axios.post('https://mealtracker-web-production.up.railway.app/profiles', newProfile, {
         headers: { Authorization: `Bearer ${token}` }
       });
 

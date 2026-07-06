@@ -10,7 +10,7 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/login", { username, password });
+      const response = await axios.post("https://mealtracker-web-production.up.railway.app/login", { username, password });
       localStorage.setItem("jwtToken", response.data); // Save the JWT!
       navigate("/dashboard");
     } catch (error) {
