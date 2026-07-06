@@ -1,6 +1,6 @@
 HELP.md
 target/
-.mvn/wrapper/maven-wrapper.jar
+cd C:\Users\jithe\Downloads\MealTracker\MealTracker-Web\Backend
 !**/src/main/**/target/
 !**/src/test/**/target/
 

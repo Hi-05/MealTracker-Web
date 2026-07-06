@@ -6,6 +6,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.crypto.SecretKey;
 import java.util.*;
@@ -14,8 +15,9 @@ import java.util.function.Function;
 @Service
 public class JWTService {
 
-    // 1. The static key is now properly declared inside the class
-    private String secretKey = "VGhpcy1pcy1hLXZlcnktc2VjdXJlLWtleS1mb3ItbXktbWVhbC10cmFja2VyLWFwcGxpY2F0aW9u";
+
+    @Value("${jwt.secret}")
+    private String secretKey;
 
     // The old constructor with the KeyGenerator has been completely removed.
     // Spring will automatically use the default no-args constructor.
