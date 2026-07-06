@@ -58,7 +58,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173" +
+        configuration.setAllowedOrigins(List.of("http://localhost:5173" ,
                 "https://meal-tracker-web-psi.vercel.app")); // Allow React
         configuration.setAllowedMethods(Arrays.asList("GET", "POST" , "PATCH", "PUT", "DELETE", "OPTIONS")); // OPTIONS is for preflight
         configuration.setAllowedHeaders(List.of("*")); // Allow JWT Bearer tokens
