@@ -10,7 +10,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**") // This means "Apply to all my endpoints"
-                .allowedOrigins("http://localhost:5173" , "https://meal-tracker-web-psi.vercel.appg") // This is the exact port React Vite will use
+                .allowedOrigins("http://localhost:5173" ,
+                        "https://meal-tracker-web-psi.vercel.app") // This is the exact port React Vite will use
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);
