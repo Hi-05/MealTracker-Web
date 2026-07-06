@@ -14,7 +14,6 @@ public class UserProfileDto {
 
     private Long id;
 
-    @NotBlank(message = "Name cannot be empty")
     private String name;
 
     @NotNull(message = "Target energy is required")
@@ -25,6 +24,5 @@ public class UserProfileDto {
     @Min(value = 0, message = "Target protein cannot be negative")
     private Integer targetProtein;
 
-    @NotNull(message = "Effective date is required")
     private LocalDate effectiveDate;
 }
